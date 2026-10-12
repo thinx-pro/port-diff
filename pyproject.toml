@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "port-diff"
+version = "0.1.0"
+description = "Behavior-equivalence check for agent-driven rewrites and ports: run old and new side by side, normalize noise, grade what changed."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.9"
+dependencies = []
+keywords = ["porting", "rewrite", "differential-testing", "regression", "ai-agents", "claude-code", "codex", "rust"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Software Development :: Testing",
+  "Environment :: Console",
+]
+
+[project.urls]
+Homepage = "https://github.com/thinx-pro/port-diff"
+
+[project.scripts]
+port-diff = "port_diff.cli:main"
+
+[tool.setuptools]
+packages = ["port_diff"]

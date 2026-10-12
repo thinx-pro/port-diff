@@ -1,0 +1,151 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1"><title>port-diff report</title><style>
+:root{--bg:#0d1117;--card:#161b22;--line:#30363d;--fg:#e6edf3;--mute:#8b949e;
+--BREAK:#f85149;--DIFF:#ff7b72;--WARN:#d29922;--PERF:#bc8cff;--NOISE:#39c5cf;--SAME:#3fb950}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--fg);
+font:14px/1.5 -apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;padding:28px}
+.wrap{max-width:1040px;margin:0 auto}h1{font-size:22px;margin:0 0 4px}h1 small{color:var(--mute);font-weight:400;font-size:14px}
+.cmd{font:12px ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--mute);margin:2px 0}
+.tiles{display:flex;gap:10px;margin:18px 0;flex-wrap:wrap}.tile{flex:1;min-width:110px;background:var(--card);
+border:1px solid var(--line);border-radius:10px;padding:10px 14px}.tile b{display:block;font-size:24px}
+.tile span{color:var(--mute);font-size:12px}table{width:100%;border-collapse:collapse;background:var(--card);
+border:1px solid var(--line);border-radius:10px;overflow:hidden}th,td{padding:8px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+th{color:var(--mute);font-weight:500;font-size:12px}td.num{text-align:right;font-variant-numeric:tabular-nums;color:var(--mute)}
+.badge{display:inline-block;min-width:58px;text-align:center;border-radius:6px;padding:1px 8px;font-weight:600;font-size:12px;color:#0d1117}
+code{font:12px ui-monospace,SFMono-Regular,Menlo,monospace}
+details{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:12px 0;padding:10px 14px}
+summary{cursor:pointer;font-weight:600}pre{background:#0b0f14;border-radius:8px;padding:10px;overflow:auto;font:12px/1.45 ui-monospace,SFMono-Regular,Menlo,monospace}
+.add{color:#3fb950}.del{color:#ff7b72}.hunk{color:#39c5cf}.legend{color:var(--mute);font-size:12px;margin-top:16px}
+</style></head>
+<body><div class="wrap"><h1>port-diff report <small>7 cases · 1 BREAK · 4 DIFF · 1 PERF · 1 NOISE</small></h1>
+<div class="cmd">old: python3 demo/old/wordfreq.py {case} --json out.json</div><div class="cmd">new: node demo/new/wordfreq.js {case} --json out.json</div>
+<div class="tiles"><div class="tile"><b style="color:var(--BREAK)">1</b><span>BREAK</span></div><div class="tile"><b style="color:var(--DIFF)">4</b><span>DIFF</span></div><div class="tile"><b style="color:var(--WARN)">0</b><span>WARN</span></div><div class="tile"><b style="color:var(--PERF)">1</b><span>PERF</span></div><div class="tile"><b style="color:var(--NOISE)">1</b><span>NOISE</span></div><div class="tile"><b style="color:var(--SAME)">0</b><span>SAME</span></div></div>
+<table><thead><tr><th>verdict</th><th>case</th><th>old ms</th><th>new ms</th><th>first finding</th></tr></thead>
+<tbody><tr><td><span class="badge" style="background:var(--DIFF)">DIFF</span></td><td><code>01-plain.txt</code></td><td class="num">34</td><td class="num">38</td><td>stdout: only in new: &#x27;1 quick&#x27;</td></tr><tr><td><span class="badge" style="background:var(--DIFF)">DIFF</span></td><td><code>02-ties.txt</code></td><td class="num">35</td><td class="num">39</td><td>stdout: only in new: &#x27;2 pear&#x27;</td></tr><tr><td><span class="badge" style="background:var(--DIFF)">DIFF</span></td><td><code>03-unicode.txt</code></td><td class="num">34</td><td class="num">39</td><td>stdout: &#x27;3 café&#x27; -&gt; &#x27;3 caf&#x27;</td></tr><tr><td><span class="badge" style="background:var(--BREAK)">BREAK</span></td><td><code>04-empty.txt</code></td><td class="num">35</td><td class="num">36</td><td>exit 0 -&gt; exit 1</td></tr><tr><td><span class="badge" style="background:var(--DIFF)">DIFF</span></td><td><code>05-contractions.txt</code></td><td class="num">36</td><td class="num">38</td><td>stdout: &#x27;1 done&#x27; -&gt; &#x27;1 stop&#x27;</td></tr><tr><td><span class="badge" style="background:var(--NOISE)">NOISE</span></td><td><code>06-mixed-case.txt</code></td><td class="num">37</td><td class="num">37</td><td>identical after durations, json, trailing-ws</td></tr><tr><td><span class="badge" style="background:var(--PERF)">PERF</span></td><td><code>07-large-vocabulary.txt</code></td><td class="num">53</td><td class="num">717</td><td>53 ms -&gt; 717 ms (13.6x slower)</td></tr></tbody></table>
+<details open><summary><span class="badge" style="background:var(--DIFF)">DIFF</span> 01-plain.txt</summary><p><b>[DIFF]</b> stdout: only in new: &#x27;1 quick&#x27;</p><pre>--- old/stdout
++++ new/stdout
+<span class="hunk">@@ -1,5 +1,5 @@</span>
+      5 the
+      3 fox
+<span class="add">+     1 quick</span>
+      1 brown
+<span class="del">-     1 dog</span>
+<span class="del">-     1 end</span>
+<span class="add">+     1 jumps</span></pre><p><b>[DIFF]</b> out.json: only in new: &#x27;&quot;word&quot;: &quot;quick&quot;&#x27;</p><pre>--- old/out.json
++++ new/out.json
+<span class="hunk">@@ -11,13 +11,13 @@</span>
+   {
+    &quot;count&quot;: 1,
+<span class="add">+   &quot;word&quot;: &quot;quick&quot;</span>
+<span class="add">+  },</span>
+<span class="add">+  {</span>
+<span class="add">+   &quot;count&quot;: 1,</span>
+    &quot;word&quot;: &quot;brown&quot;
+   },
+   {
+    &quot;count&quot;: 1,
+<span class="del">-   &quot;word&quot;: &quot;dog&quot;</span>
+<span class="del">-  },</span>
+<span class="del">-  {</span>
+<span class="del">-   &quot;count&quot;: 1,</span>
+<span class="del">-   &quot;word&quot;: &quot;end&quot;</span>
+<span class="add">+   &quot;word&quot;: &quot;jumps&quot;</span>
+   }
+  ],</pre></details><details open><summary><span class="badge" style="background:var(--DIFF)">DIFF</span> 02-ties.txt</summary><p><b>[DIFF]</b> stdout: only in new: &#x27;2 pear&#x27;</p><pre>--- old/stdout
++++ new/stdout
+<span class="hunk">@@ -1,5 +1,5 @@</span>
+<span class="add">+     2 pear</span>
+      2 apple
+<span class="add">+     2 zebra</span>
+      2 mango
+<span class="del">-     2 pear</span>
+<span class="del">-     2 zebra</span>
+      1 kiwi</pre><p><b>[DIFF]</b> out.json: only in new: &#x27;{&#x27;</p><pre>--- old/out.json
++++ new/out.json
+<span class="hunk">@@ -1,4 +1,8 @@</span>
+ {
+  &quot;top&quot;: [
+<span class="add">+  {</span>
+<span class="add">+   &quot;count&quot;: 2,</span>
+<span class="add">+   &quot;word&quot;: &quot;pear&quot;</span>
+<span class="add">+  },</span>
+   {
+    &quot;count&quot;: 2,
+<span class="hunk">@@ -7,13 +11,9 @@</span>
+   {
+    &quot;count&quot;: 2,
+<span class="del">-   &quot;word&quot;: &quot;mango&quot;</span>
+<span class="add">+   &quot;word&quot;: &quot;zebra&quot;</span>
+   },
+   {
+    &quot;count&quot;: 2,
+<span class="del">-   &quot;word&quot;: &quot;pear&quot;</span>
+<span class="del">-  },</span>
+<span class="del">-  {</span>
+<span class="del">-   &quot;count&quot;: 2,</span>
+<span class="del">-   &quot;word&quot;: &quot;zebra&quot;</span>
+<span class="add">+   &quot;word&quot;: &quot;mango&quot;</span>
+   },
+   {</pre></details><details open><summary><span class="badge" style="background:var(--DIFF)">DIFF</span> 03-unicode.txt</summary><p><b>[DIFF]</b> stdout: &#x27;3 café&#x27; -&gt; &#x27;3 caf&#x27;</p><pre>--- old/stdout
++++ new/stdout
+<span class="hunk">@@ -1,5 +1,5 @@</span>
+<span class="del">-     3 café</span>
+<span class="del">-     2 東京</span>
+<span class="add">+     3 caf</span>
+      1 au
+<span class="del">-     1 in</span>
+      1 lait
+<span class="add">+     1 noir</span>
+<span class="add">+     1 na</span></pre><p><b>[DIFF]</b> out.json: &#x27;&quot;word&quot;: &quot;café&quot;&#x27; -&gt; &#x27;&quot;word&quot;: &quot;caf&quot;&#x27;</p><pre>--- old/out.json
++++ new/out.json
+<span class="hunk">@@ -3,9 +3,5 @@</span>
+   {
+    &quot;count&quot;: 3,
+<span class="del">-   &quot;word&quot;: &quot;café&quot;</span>
+<span class="del">-  },</span>
+<span class="del">-  {</span>
+<span class="del">-   &quot;count&quot;: 2,</span>
+<span class="del">-   &quot;word&quot;: &quot;東京&quot;</span>
+<span class="add">+   &quot;word&quot;: &quot;caf&quot;</span>
+   },
+   {
+<span class="hunk">@@ -15,12 +11,16 @@</span>
+   {
+    &quot;count&quot;: 1,
+<span class="del">-   &quot;word&quot;: &quot;in&quot;</span>
+<span class="add">+   &quot;word&quot;: &quot;lait&quot;</span>
+   },
+   {
+    &quot;count&quot;: 1,
+<span class="del">-   &quot;word&quot;: &quot;lait&quot;</span>
+<span class="add">+   &quot;word&quot;: &quot;noir&quot;</span>
+<span class="add">+  },</span>
+<span class="add">+  {</span>
+<span class="add">+   &quot;count&quot;: 1,</span>
+<span class="add">+   &quot;word&quot;: &quot;na&quot;</span>
+   }
+  ],
+<span class="del">- &quot;total&quot;: 13,</span>
+<span class="add">+ &quot;total&quot;: 12,</span>
+  &quot;unique&quot;: 10
+ }</pre><p><b>[WARN]</b> stderr: &#x27;processed 13 words in &lt;DUR&gt;&#x27; -&gt; &#x27;processed 12 words in &lt;DUR&gt;&#x27;</p><pre>--- old/stderr
++++ new/stderr
+<span class="hunk">@@ -1 +1 @@</span>
+<span class="del">-processed 13 words in &lt;DUR&gt;</span>
+<span class="add">+processed 12 words in &lt;DUR&gt;</span></pre></details><details open><summary><span class="badge" style="background:var(--BREAK)">BREAK</span> 04-empty.txt</summary><p><b>[BREAK]</b> exit 0 -&gt; exit 1</p></details><details open><summary><span class="badge" style="background:var(--DIFF)">DIFF</span> 05-contractions.txt</summary><p><b>[DIFF]</b> stdout: &#x27;1 done&#x27; -&gt; &#x27;1 stop&#x27;</p><pre>--- old/stdout
++++ new/stdout
+<span class="hunk">@@ -2,4 +2,4 @@</span>
+      2 don&#x27;t
+      2 fine
+<span class="del">-     1 done</span>
+<span class="add">+     1 stop</span>
+      1 panic</pre><p><b>[DIFF]</b> out.json: &#x27;&quot;word&quot;: &quot;done&quot;&#x27; -&gt; &#x27;&quot;word&quot;: &quot;stop&quot;&#x27;</p><pre>--- old/out.json
++++ new/out.json
+<span class="hunk">@@ -15,5 +15,5 @@</span>
+   {
+    &quot;count&quot;: 1,
+<span class="del">-   &quot;word&quot;: &quot;done&quot;</span>
+<span class="add">+   &quot;word&quot;: &quot;stop&quot;</span>
+   },
+   {</pre></details><details open><summary><span class="badge" style="background:var(--PERF)">PERF</span> 07-large-vocabulary.txt</summary><p><b>[PERF]</b> 53 ms -&gt; 717 ms (13.6x slower)</p></details>
+<p class="legend"><b>BREAK</b> outcome changed (exit code, crash, timeout) or an artefact disappeared · <b>DIFF</b> observable output or produced files differ after normalization · <b>WARN</b> stderr wording differs, or an implementation is nondeterministic · <b>PERF</b> new is slower beyond the threshold · <b>NOISE</b> differs byte-for-byte, identical after normalization · <b>SAME</b> byte-identical</p></div></body></html>
