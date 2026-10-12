@@ -29,7 +29,13 @@ on lots of real inputs and diff everything observable. People keep hand-rolling 
 ## Quick start
 
 ```bash
-pipx install git+https://github.com/thinx-pro/port-diff   # or: pip install git+https://github.com/thinx-pro/port-diff
+pipx install git+https://github.com/thinx-pro/port-diff
+```
+
+No pipx? `pip install git+https://github.com/thinx-pro/port-diff` works too (zero dependencies).
+Then point it at your two builds and a folder of inputs (these paths are examples, use your own):
+
+```bash
 port-diff run --old "python3 old/tool.py {case}" --new "./target/release/tool {case}" --cases cases/
 ```
 
