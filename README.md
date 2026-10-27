@@ -4,6 +4,9 @@
 `port-diff` runs the old and the new implementation on the same inputs, normalizes away noise
 (timestamps, temp paths, pointer values, JSON key order…), and grades what actually changed.
 
+<!-- agent-preflight -->
+> **Also a Claude Code skill.** `port-diff` is part of [agent-preflight](https://github.com/thinx-pro/agent-preflight), 16 offline checks for coding agents: `/plugin marketplace add thinx-pro/agent-preflight` then `/plugin install port-diff@agent-preflight`, and ask Claude in plain words.
+
 ![python](https://img.shields.io/badge/python-3.9%2B-blue) ![deps](https://img.shields.io/badge/dependencies-0-brightgreen) ![license](https://img.shields.io/badge/license-MIT-green) ![version](https://img.shields.io/badge/version-0.1.0-lightgrey)
 
 ![port-diff HTML report for the bundled demo](assets/report.png)
