@@ -144,9 +144,3 @@ python3 demo/make_cases.py                 # regenerate the demo corpus
 ## License
 
 MIT
-
----
-
-### 中文说明
-
-**port-diff**：给「Agent 主导的整库移植 / 重写 / 复刻」做行为等价验收。同一批真实输入分别喂给旧实现和新实现（各自在全新临时目录里运行），比较退出码、stdout/stderr、产出文件和耗时；时间戳、临时路径、指针地址、JSON 键顺序等噪音先规范化掉，再把差异分成 BREAK / DIFF / WARN / PERF / NOISE / SAME 六级。支持 `record` 录下旧实现、之后只跑新实现对照；`--json -` 可以直接回灌给移植 Agent 当 Verifier，仓库里附带一个 Claude Code Skill（`skills/port-verify`）。零依赖，Python 3.9+。
